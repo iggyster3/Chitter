@@ -5,7 +5,7 @@ ENV["RACK_ENV"] = 'test'
 # because the server needs to know
 # what environment it's running it: test or development.
 # The environment determines what dtabase to use.
-require './chitter_app.rb'
+require './app/chitter_app'
 
 
 require 'rack/test'

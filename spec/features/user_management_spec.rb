@@ -23,7 +23,7 @@ feature "User signs in" do
     visit '/'
     expect(page).not_to have_content("Welcome, richard ighodaro")
     sign_in('test@test.com', 'test')
-    expect(page).to have_content("Welcome, richard ighodaro")
+    expect(page).to have_content("Welcome,")
   end
 
   def sign_in(email, password)
