@@ -1,7 +1,13 @@
+# We need to know which database to work with
 ENV["RACK_ENV"] = 'test'
 
-
+# this needs too be after ENV["RACK_ENV"] = 'test'
+# because the server needs to know
+# what environment it's running it: test or development.
+# The environment determines what dtabase to use.
 require './chitter_app.rb'
+
+
 require 'rack/test'
 require 'capybara/rspec'
 
