@@ -10,6 +10,8 @@ require './chitter_app.rb'
 
 require 'rack/test'
 require 'capybara/rspec'
+require 'database_cleaner'
+
 
 Capybara.app  = Chitter
 
@@ -20,5 +22,18 @@ RSpec.configure do |config|
   config.filter_run :focus
 
   config.order = 'random'
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
 end

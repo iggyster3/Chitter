@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'data_mapper'
 require 'rack-flash'
+require_relative 'lib/user'
+
 
 env = ENV['RACK_ENV'] || 'development'
 
@@ -30,7 +32,7 @@ class Chitter < Sinatra::Base
 
   end
 
-  get '/sign_up' do
+  post '/sign_up' do
 
   erb :sign_up
 
