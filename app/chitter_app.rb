@@ -44,5 +44,4 @@ class Chitter < Sinatra::Base
     erb :peeps
   end
 
-
 end

@@ -22,13 +22,38 @@ feature "User signs in" do
   scenario "with correct credentials" do
     visit '/'
     expect(page).not_to have_content("Welcome, richard ighodaro")
-    sign_in('test@test.com', 'test')
+    sign_in('iggyster3', 'test')
     expect(page).to have_content("Welcome,")
   end
 
-  def sign_in(email, password)
+  scenario "with incorrect credentials" do
     visit '/'
-    fill_in 'email', :with => email
+    expect(page).not_to have_content("Welcome, richard ighodaro")
+    sign_in('iggyster3', 'wrong')
+    expect(page).not_to have_content("Welcome, richard ighodaro")
+  end
+
+  scenario "with a password that doesn't match" do
+    expect{ sign_up('iggy', 'pass', 'wrong@test.com', 'pass', 'passss') }.to change(User, :count).by(0)
+  end
+
+  def sign_up(fullname = "richard",
+    username = "iggy",
+    email = "test@test.com",
+    password = "oranges",
+    password_confirmation = "oranges!")
+    visit '/'
+    fill_in :fullname, :with => fullname
+    fill_in :username, :with => username
+    fill_in :email,    :with => email
+    fill_in :password, :with => password
+    fill_in :password_confirmation, :with => password_confirmation
+    click_button "Sign in"
+  end
+
+  def sign_in(username, password)
+    visit '/'
+    fill_in 'username', :with => username
     fill_in 'password', :with => password
     click_button 'Sign in'
   end
