@@ -39,11 +39,11 @@ feature "User signs in" do
     expect(page).to have_content("Password does not match the confirmation")
   end
 
-  def sign_up(fullname = "richard",
-    username = "iggy",
-    email = "test@test.com",
-    password = "oranges",
-    password_confirmation = "oranges!")
+  def sign_up(fullname = "Richie",
+    username = "iggyster123",
+    email = "test2@test.com ",
+    password = "shardae3",
+    password_confirmation = "shardae3")
     visit '/'
     fill_in :fullname, :with => fullname
     fill_in :username, :with => username

@@ -1,20 +1,5 @@
 <h1>Welcome to Rwitter</h1>
 
-<% if flash[:errors] && !flash[:errors].empty? %>
-
-Sorry, there were the following problems with the form.
-
-<ul id="errors">
-
-  <% flash[:errors].each do |error| %>
-
-  <li><%= error %></li>
-
-  <% end %>
-
-</ul>
-<% end %>
-
 <div style="float: left;">
 
   <form action='/sign_up' method='post'>
@@ -36,7 +21,7 @@ Sorry, there were the following problems with the form.
 <div style="float: right;">
 
 
-  <form action='/sessions' method='post'>
+  <form action='/sign_in' method='post'>
 
     <h1>Sign in</h1>
 

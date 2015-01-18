@@ -1,5 +1,37 @@
 <% if current_user %>
 
-Welcome, <%= current_user.fullname %>
+  Welcome, <%= current_user.fullname %>
 
-<% end %>
+  <% end %>
+
+
+  <!--<section class="">
+
+    <form method="post" action="/sessions">
+      <input type="hidden" name="_method" value="delete"><input type="submit" value="Sign Out!" id="sign_out_button">
+    </form>
+  </section>
+  <br>-->
+
+  <section>
+
+    <form method="post" action="/peeps">
+
+  Greet : <input type="text" name="body">
+          <input type="hidden" name="username" value="<%= current_user.username %>">
+          <input type="hidden" name="name" value="<%= current_user.fullname %>">
+          <input type="submit" value="Peep!">
+
+    </form>
+
+  </section>
+
+  <% @peeps.reverse.each do |peep| %>
+
+  <section>
+    <p><%= peep.username %></p>
+    <p><%= peep.body %></p>
+    <p>Peeped at <%= peep.created_at.to_s.chars[0..15].each_slice(10).to_a.rotate.flatten.drop(1).insert(5, " ").join %></p>
+  </section>
+
+  <% end %>

@@ -18,6 +18,9 @@ class User
   # and it's not enough for the hash and salt
   property :password_digest, Text
 
+  has n, :peeps, :through => Resource
+
+
   attr_reader :password
   attr_accessor :password_confirmation
 
@@ -27,7 +30,7 @@ class User
   # read more about it in the documentation
   # http://datamapper.org/docs/validations.html
   validates_confirmation_of :password
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :username
 
   # when assigned the password, we don't store it directly
   # instead, we generate a password digest, that looks like this:

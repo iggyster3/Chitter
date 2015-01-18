@@ -2,6 +2,8 @@ require 'sinatra/base'
 require 'data_mapper'
 require 'rack-flash'
 require './lib/user'
+require './lib/peep'
+
 require_relative 'helpers/application'
 require_relative 'data_mapper_setup'
 
@@ -10,6 +12,8 @@ class Chitter < Sinatra::Base
 
   enable :sessions
   set :session_secret, 'super secret'
+  use Rack::Flash
+
 
   helpers CurrentUser
 
@@ -47,8 +51,30 @@ class Chitter < Sinatra::Base
 
     if user
       session[:user_id] = user.id
+
+      @users = User.all
+      @peeps = Peep.all
+      
       erb :sign_up
+    else
+      flash[:errors] = ["the email or password is incorrect"]
+      erb :index
     end
 
   end
+
+  post '/peeps' do
+
+    @current_user = @peeps = Peep.create(body: params[:body],
+    username: params[:username],
+    name: params[:name])
+
+    @peeps.save
+
+    @users = User.all
+    @peeps = Peep.all
+
+    erb :peeps
+  end
+
 end
