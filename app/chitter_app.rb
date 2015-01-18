@@ -40,8 +40,15 @@ class Chitter < Sinatra::Base
 
   end
 
-  post '/sign_in' do
-    erb :peeps
-  end
+  post '/sessions' do
+    username, password = params[:username_sign_in], params[:password_sign_in]
 
+    user = User.authenticate(username, password)
+
+    if user
+      session[:user_id] = user.id
+      erb :sign_up
+    end
+
+  end
 end
