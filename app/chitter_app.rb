@@ -39,10 +39,11 @@ class Chitter < Sinatra::Base
     @users.save
 
     session[:user_id] = @users.id
+    @peeps = Peep.all
 
-  erb :sign_up
+    erb :sign_up
 
-  end
+    end
 
   post '/sessions' do
     username, password = params[:username_sign_in], params[:password_sign_in]
@@ -54,11 +55,14 @@ class Chitter < Sinatra::Base
 
       @users = User.all
       @peeps = Peep.all
-      
+
       erb :sign_up
+
     else
+
       flash[:errors] = ["the email or password is incorrect"]
       erb :index
+
     end
 
   end
@@ -75,6 +79,13 @@ class Chitter < Sinatra::Base
     @peeps = Peep.all
 
     erb :peeps
+  end
+
+  delete '/sessions' do
+
+  flash[:notice] = "See you soon"
+  session[:user_id] = nil
+  redirect to ('/')
   end
 
 end

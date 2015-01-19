@@ -1,14 +1,19 @@
 <section>
-  Current Greets.....
+  Current Peeps.
 </section>
 
 <section>
 
   <form method="post" action="/peeps">
 
+    <input type="submit" value="Sign Out">
+
+  </form>
+
+  <form method="post" action="/peeps">
+
     Greet : <input type="text" name="body">
     <input type="hidden" name="username" value="<%= current_user.username %>">
-    <input type="hidden" name="name" value="<%= current_user.fullname %>">
     <input type="submit" value="Peep!">
 
   </form>

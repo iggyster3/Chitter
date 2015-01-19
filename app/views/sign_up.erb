@@ -1,25 +1,25 @@
 <% if current_user %>
 
-  Welcome, <%= current_user.fullname %>
+  <h1>Welcome, <%= current_user.fullname %></h1>
 
   <% end %>
 
 
-  <!--<section class="">
+  <section>
 
     <form method="post" action="/sessions">
-      <input type="hidden" name="_method" value="delete"><input type="submit" value="Sign Out!" id="sign_out_button">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Sign Out!" id="sign_out_button">
     </form>
   </section>
-  <br>-->
+  <br>
 
   <section>
 
-    <form method="post" action="/peeps">
+  <form method="post" action="/peeps">
 
-  Greet : <input type="text" name="body">
+  Greet : <input type="text" name="body"><br>
           <input type="hidden" name="username" value="<%= current_user.username %>">
-          <input type="hidden" name="name" value="<%= current_user.fullname %>">
           <input type="submit" value="Peep!">
 
     </form>

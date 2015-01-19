@@ -9,7 +9,7 @@ feature "User visits homepage" do
 end
 
 
-feature "User signs in" do
+feature "User signs up" do
 
   before(:each) do
     User.create(:fullname => 'richard ighodaro',
@@ -22,7 +22,7 @@ feature "User signs in" do
   scenario "with correct credentials" do
     visit '/'
     expect(page).not_to have_content("Welcome, richard ighodaro")
-    sign_in('iggyster3', 'test')
+    sign_up('iggyster3', 'test')
     expect(page).to have_content("Welcome,")
   end
 
